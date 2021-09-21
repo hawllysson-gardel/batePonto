@@ -20,7 +20,17 @@ class CreateUsersTable extends Migration
             $table->timestamp('email_verified_at')->nullable();
             $table->string('password');
             $table->rememberToken();
+
+            $table->date('date_of_birth')->nullable();
+            $table->string('cpf', 11)->unique();
+            $table->string('cep', 8);
+            $table->string('address');
+            $table->foreignId('user_type_id')->comment = 'ID do Tipo de Usuário - Tabela "user_types"';
+
+            $table->softDeletes();
             $table->timestamps();
+
+            $table->foreign('user_type_id')->references('id')->on('user_types')->onDelete('cascade');
         });
     }
 
