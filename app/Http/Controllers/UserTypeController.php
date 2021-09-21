@@ -111,7 +111,7 @@ class UserTypeController extends Controller
     /**
      * Store a newly created resource in storage.
      *
-     * @param  \Illuminate\Http\StoreUserTypeRequest $request
+     * @param  \App\Http\Requests\UserType\StoreUserTypeRequest $request
      * @return \App\Models\UserType $userType
      * @return \Illuminate\Http\Response
      */
@@ -130,7 +130,7 @@ class UserTypeController extends Controller
      * Update the specified resource in storage.
      *
      * @param  $id
-     * @param  \Illuminate\Http\UpdateUserTypeRequest $request
+     * @param  \App\Http\Requests\UserType\UpdateUserTypeRequest $request
      * @return \App\Models\userType $userType
      * @return \Illuminate\Http\Response
      */

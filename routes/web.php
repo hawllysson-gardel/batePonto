@@ -5,7 +5,6 @@ use Illuminate\Support\Facades\Route;
 use App\Http\Controllers\Auth\AuthenticatedSessionController;
 use App\Http\Controllers\Auth\PasswordResetLinkController;
 use App\Http\Controllers\Auth\NewPasswordController;
-use App\Http\Controllers\Auth\ConfirmablePasswordController;
 use App\Http\Controllers\Auth\RegisteredUserController;
 
 /*
@@ -45,12 +44,6 @@ Route::group(['prefix' => 'reset-password', 'middleware' => 'guest'], function (
 Route::group(['prefix' => 'register', 'middleware' => 'guest'], function () {
     Route::get('/', [RegisteredUserController::class, 'create'])->name('register');
     Route::post('/', [RegisteredUserController::class, 'store']);
-});
-
-// REGISTER
-Route::group(['prefix' => 'confirm-password', 'middleware' => 'auth'], function () {
-    Route::get('/', [ConfirmablePasswordController::class, 'create'])->name('password.confirm');
-    Route::post('/', [ConfirmablePasswordController::class, 'store']);
 });
 
 Route::get('/dashboard', function () {
