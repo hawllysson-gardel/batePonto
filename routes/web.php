@@ -6,6 +6,7 @@ use App\Http\Controllers\Auth\AuthenticatedSessionController;
 use App\Http\Controllers\Auth\PasswordResetLinkController;
 use App\Http\Controllers\Auth\NewPasswordController;
 use App\Http\Controllers\Auth\RegisteredUserController;
+use App\Http\Controllers\UserController;
 
 /*
 |--------------------------------------------------------------------------
@@ -46,6 +47,13 @@ Route::group(['prefix' => 'register', 'middleware' => 'guest'], function () {
     Route::post('/', [RegisteredUserController::class, 'store']);
 });
 
-Route::get('/dashboard', function () {
-    return view('dashboard');
-})->middleware(['auth'])->name('dashboard');
+Route::group(['prefix' => 'dashboard', 'middleware' => 'auth'], function () {
+    Route::get('/', function () {
+        return view('dashboard');
+    })->name('dashboard');
+
+    Route::group(['prefix' => 'user', 'middleware' => ['role:administrator']], function () {
+        Route::get('/', [UserController::class, 'index'])->name('users');
+        Route::delete('/{id}', [UserController::class, 'destroy'])->name('user.delete');
+    });
+});

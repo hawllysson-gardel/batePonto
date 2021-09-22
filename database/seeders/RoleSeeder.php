@@ -17,14 +17,14 @@ class RoleSeeder extends Seeder
     {
         $roles = [
             [
-                'name'         => 'administrador',
+                'name'         => 'administrator',
                 'display_name' => 'Administrador',
                 'description'  => 'Administrador'
             ],
             [
-                'name'         => 'colaborador',
-                'display_name' => 'Colaborador',
-                'description'  => 'Colaborador'
+                'name'         => 'employee',
+                'display_name' => 'Funcionário',
+                'description'  => 'Funcionário'
             ]
         ];
 
