@@ -3,8 +3,7 @@
 namespace App\Http\Requests\Auth;
 
 use Illuminate\Foundation\Http\FormRequest;
-use Illuminate\Validation\Rules;
-use Illuminate\Support\Facades\Password;
+use Illuminate\Validation\Rules\Password;
 
 class NewPasswordRequest extends FormRequest
 {
@@ -28,7 +27,7 @@ class NewPasswordRequest extends FormRequest
         return [
             'token'    => 'required',
             'email'    => 'required|string|email',
-            'password' => ['required', 'confirmed', Rules\Password::defaults()]
+            'password' => ['required', 'confirmed', 'string', Password::min(8)->letters()->mixedCase()->numbers()->symbols()->uncompromised()]
         ];
     }
 
@@ -42,7 +41,9 @@ class NewPasswordRequest extends FormRequest
             'email.email'        => 'Insira um email válido!',
 
             'password.required'  => 'A senha é obrigatória!',
-            'password.confirmed' => 'Email não confirmado!'
+            'password.confirmed' => 'Senha não confirmada!',
+            'password.string'    => 'Insira uma senha válida!',
+            'password.min'       => 'A senha deve ser maior ou igual a 8 caracteres!'
         ];
     }
 }

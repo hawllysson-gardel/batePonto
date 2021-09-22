@@ -9,6 +9,8 @@ use Illuminate\Support\Facades\RateLimiter;
 use Illuminate\Support\Str;
 use Illuminate\Validation\ValidationException;
 
+use Illuminate\Validation\Rules\Password;
+
 class LoginRequest extends FormRequest
 {
     /**
@@ -30,7 +32,7 @@ class LoginRequest extends FormRequest
     {
         return [
             'email'    => 'required|string|email',
-            'password' => 'required|string'
+            'password' => ['required', 'string', Password::min(8)->letters()->mixedCase()->numbers()->symbols()->uncompromised()]
         ];
     }
 
@@ -42,7 +44,8 @@ class LoginRequest extends FormRequest
             'email.email'       => 'Insira um email válido!',
 
             'password.required' => 'A senha é obrigatória!',
-            'password.string'   => 'Insira uma senha válida!'
+            'password.string'   => 'Insira uma senha válida!',
+            'password.min'      => 'A senha deve ser maior ou igual a 8 caracteres!'
         ];
     }
 
