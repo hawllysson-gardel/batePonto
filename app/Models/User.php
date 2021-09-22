@@ -20,6 +20,11 @@ class User extends Authenticatable
         'name',
         'email',
         'password',
+        'date_of_birth',
+        'cpf',
+        'cep',
+        'address',
+        'user_type_id'
     ];
 
     /**
@@ -31,4 +36,9 @@ class User extends Authenticatable
         'password',
         'remember_token',
     ];
+
+    public function userType()
+    {
+        return $this->belongsTo(UserType::class)->withTrashed();
+    }
 }

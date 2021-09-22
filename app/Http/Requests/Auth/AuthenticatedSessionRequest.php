@@ -11,7 +11,7 @@ use Illuminate\Validation\ValidationException;
 
 use Illuminate\Validation\Rules\Password;
 
-class LoginRequest extends FormRequest
+class AuthenticatedSessionRequest extends FormRequest
 {
     /**
      * Determine if the user is authorized to make this request.
