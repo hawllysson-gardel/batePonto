@@ -32,7 +32,7 @@ class AuthenticatedSessionRequest extends FormRequest
     {
         return [
             'email'    => 'required|string|email',
-            'password' => ['required', 'string', Password::min(8)->letters()->mixedCase()->numbers()->symbols()->uncompromised()]
+            'password' => ['required', 'string', Password::min(8)->letters()->mixedCase()->numbers()->symbols()]
         ];
     }
 
