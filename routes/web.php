@@ -46,7 +46,7 @@ Route::group(['prefix' => 'dashboard', 'middleware' => 'auth'], function () {
         return view('dashboard');
     })->name('dashboard');
 
-    Route::group(['prefix' => 'user', 'middleware' => ['role:administrator']], function () {
+    Route::group(['prefix' => 'user', 'middleware' => ['role:'.Config::get('constants.roles.administrator')]], function () {
         Route::get('/', [UserController::class, 'index'])->name('users');
         Route::delete('/{id}', [UserController::class, 'destroy'])->where('id', '[0-9]+')->name('user.delete');
         Route::post('/{id}', [UserController::class, 'restore'])->where('id', '[0-9]+')->name('user.restore');
