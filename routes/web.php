@@ -57,6 +57,7 @@ Route::group(['prefix' => 'dashboard', 'middleware' => 'auth'], function () {
     });
 
     Route::group(['prefix' => 'point'], function () {
+        Route::get('/', [PointController::class, 'search'])->name('point.search');
         Route::post('/', [PointController::class, 'store'])->name('point.store');
     });
 });

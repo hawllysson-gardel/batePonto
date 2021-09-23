@@ -29,6 +29,12 @@
                             {{ __('Create User') }}
                         </x-nav-link>
                     </div>
+
+                    <div class="hidden space-x-8 sm:-my-px sm:ml-10 sm:flex">
+                        <x-nav-link :href="route('point.search')" :active="request()->routeIs('point.search')">
+                            {{ __('Points History') }}
+                        </x-nav-link>
+                    </div>
                 @endrole
             </div>
 
@@ -92,6 +98,12 @@
             <div class="pt-2 pb-3 space-y-1">
                 <x-responsive-nav-link :href="route('user.create')" :active="request()->routeIs('user.create')">
                     {{ __('Create User') }}
+                </x-responsive-nav-link>
+            </div>
+
+            <div class="pt-2 pb-3 space-y-1">
+                <x-responsive-nav-link :href="route('point.search')" :active="request()->routeIs('point.search')">
+                    {{ __('Points History') }}
                 </x-responsive-nav-link>
             </div>
         @endrole

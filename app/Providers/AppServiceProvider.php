@@ -38,6 +38,7 @@ class AppServiceProvider extends ServiceProvider
         Blade::directive('role', function($expression) {
             return "<?php if (Auth::user()->hasRole({$expression})) : ?>";
         });
+        
         Blade::directive('endrole', function($expression) {
             return "<?php endif; // Auth::user()->hasRole ?>";
         });

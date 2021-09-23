@@ -26,13 +26,27 @@ class PointController extends Controller
     }
 
     /**
-     * Show the form for creating a new resource.
+     * Display a listing of the resource.
      *
      * @return \Illuminate\Http\Response
      */
-    public function create()
+    public function search()
     {
-        //
+        try {
+            $my_id = auth()->user()->id;
+
+            $points = Point::whereHas('user', function($query) use ($my_id) {
+                $query->where('user_id', $my_id);
+            })->with(array('user' => function($query) {
+                $query->select('id','name', 'role_id', 'user_id')->with('role')->with(array('user' => function($query) {
+                    $query->select('id','name');
+                }));
+            }))->paginate(10);
+
+            return response()->view('point.index', compact('points'), 200);
+        } catch (\Throwable $th) {
+            return redirect(route('point.search'))->with(['code' => 500, 'message' => 'Erro na tela de histórico de pontos!']);
+        }
     }
 
     /**
@@ -65,50 +79,5 @@ class PointController extends Controller
         } catch (\Throwable $th) {
             return abort(500, "INTERNAL SERVER ERROR.");
         }
-    }
-
-    /**
-     * Display the specified resource.
-     *
-     * @param  \App\Models\Point  $point
-     * @return \Illuminate\Http\Response
-     */
-    public function show(Point $point)
-    {
-        //
-    }
-
-    /**
-     * Show the form for editing the specified resource.
-     *
-     * @param  \App\Models\Point  $point
-     * @return \Illuminate\Http\Response
-     */
-    public function edit(Point $point)
-    {
-        //
-    }
-
-    /**
-     * Update the specified resource in storage.
-     *
-     * @param  \Illuminate\Http\Request  $request
-     * @param  \App\Models\Point  $point
-     * @return \Illuminate\Http\Response
-     */
-    public function update(Request $request, Point $point)
-    {
-        //
-    }
-
-    /**
-     * Remove the specified resource from storage.
-     *
-     * @param  \App\Models\Point  $point
-     * @return \Illuminate\Http\Response
-     */
-    public function destroy(Point $point)
-    {
-        //
     }
 }

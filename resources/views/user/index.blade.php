@@ -5,7 +5,7 @@
         </h2>
     </x-slot>
 
-    <div class="py-12">
+    <div class="py-5">
         <div class="max-w-7xl mx-auto sm:px-6 lg:px-8">
             <section class="container mx-auto p-2 font-mono">
                 <div class="w-full mb-8 overflow-hidden rounded-lg shadow-lg">

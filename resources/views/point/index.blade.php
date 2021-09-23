@@ -1,72 +1,11 @@
 <x-app-layout>
     <x-slot name="header">
         <h2 class="font-semibold text-xl text-gray-800 leading-tight">
-            {{ __('Dashboard') }}
+            {{ __('Points History') }}
         </h2>
     </x-slot>
-
-    <div class="pt-12 pb-0">
-        <div class="max-w-7xl mx-auto sm:px-6 lg:px-8">
-            <section class="container mx-auto p-2 font-mono">
-                <form method = "POST" action="{{ route('point.store') }}">
-                    @csrf
-                    <div class="bg-white rounded shadow-lg p-4 px-4 md:p-8 mb-6">
-                        <div class="grid gap-4 gap-y-2 text-sm grid-cols-1 lg:grid-cols-3">
-                            <div class="text-gray-600">
-                                <p class="font-medium text-lg">Point Details</p>
-                                <p>Please fill out all the fields.</p>
-                            </div>
-                        
-                            <div class="lg:col-span-2">
-                                <div class="grid gap-4 gap-y-2 text-sm grid-cols-1 md:grid-cols-5">
-                                    <div class="md:col-span-5">
-                                        <x-label for="description" :value="__('Description')" />
-                                        <x-input id="description" class="block mt-1 w-full" type="text" name="description" :value="old('description')" required maxlength="255" autofocus />
-
-                                        @error('description')
-                                            <div class="font-medium text-red-600 pt-2">
-                                                <strong>{{ $message }}</strong>
-                                            </div>
-                                        @enderror
-                                    </div>
-
-                                    <div class="md:col-span-3">
-                                        <x-label for="entry_time" :value="__('Entry Time')" />
-                                        <x-input required id="entry_time" class="block mt-1 w-full" type="datetime-local" name="entry_time" :value="old('entry_time')"/>
-                                                                            
-                                        @error('entry_time')
-                                            <div class="font-medium text-red-600 pt-2">
-                                                <strong>{{ $message }}</strong>
-                                            </div>
-                                        @enderror
-                                    </div>
-
-                                    <div class="md:col-span-2">
-                                        <x-label for="exit_time" :value="__('Exit Time')" />
-                                        <x-input required id="exit_time" class="block mt-1 w-full" type="datetime-local" name="exit_time" :value="old('exit_time')"/>
-                                                                            
-                                        @error('exit_time')
-                                            <div class="font-medium text-red-600 pt-2">
-                                                <strong>{{ $message }}</strong>
-                                            </div>
-                                        @enderror
-                                    </div>
-
-                                    <div class="md:col-span-5 text-right pt-3">
-                                        <x-button class="ml-4" id="submit">
-                                            {{ __('Register') }}
-                                        </x-button>
-                                    </div>
-                                </div>
-                            </div>
-                        </div>
-                    </div>
-                </form>
-            </section>
-        </div>
-    </div>
     
-    <div class="py-0">
+    <div class="py-5">
         <div class="max-w-7xl mx-auto sm:px-6 lg:px-8">
             <section class="container mx-auto p-2 font-mono">
                 <div class="w-full mb-8 overflow-hidden rounded-lg shadow-lg">
@@ -74,16 +13,27 @@
                         <table class="w-full">
                             <thead>
                                 <tr class="text-md font-semibold tracking-wide text-left text-gray-900 bg-gray-200 uppercase border-b border-gray-600">
-                                    <th class="px-4 py-3">Description</th>
+                                    <th class="px-4 py-3">Name</th>
+                                    <th class="px-4 py-3">Role</th>
+                                    <th class="px-4 py-3">Administrador</th>
                                     <th class="px-4 py-3">Entry Time</th>
                                     <th class="px-4 py-3">Exit Time</th>
+                                    <th class="px-4 py-3">description</th>
                                 </tr>
                             </thead>
                             <tbody class="bg-white">
                                 @foreach($points as $point)
                                     <tr class="text-gray-700">
                                         <td class="px-4 py-3 text-ms border">
-                                            {{ $point->description }}
+                                            {{ $point->user->name }}
+                                        </td>
+
+                                        <td class="px-4 py-3 text-ms border">
+                                            {{ $point->user->role->display_name }}
+                                        </td>
+
+                                        <td class="px-4 py-3 text-ms border">
+                                            {{ $point->user->user->name }}
                                         </td>
 
                                         <td class="px-4 py-3 text-ms border">
@@ -92,6 +42,10 @@
 
                                         <td class="px-4 py-3 text-ms border">
                                             {{ $point->exit_time }}
+                                        </td>
+
+                                        <td class="px-4 py-3 text-ms border">
+                                            {{ $point->description }}
                                         </td>
                                     </tr>
                                 @endforeach

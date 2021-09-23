@@ -29,7 +29,7 @@ class PointFactory extends Factory
         $final_time  = $faker->dateTimeBetween($inital_time, 'now', null)->format('Y-m-d H:i:s');
 
         return [
-            'description' => Str::random(50),
+            'description' => $this->faker->text,
             'entry_time'  => $inital_time,
             'exit_time'   => $final_time,
             'user_id'     => User::all()->random()->id,
