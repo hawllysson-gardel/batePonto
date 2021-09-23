@@ -50,6 +50,11 @@
                                         <x-label for="role" :value="__('Role')" />
                                         <x-input class="block mt-1 w-full" type="text" value="{{ $user->role->display_name }}" disabled/>
                                     </div>
+
+                                    <div class="md:col-span-5">
+                                        <x-label for="user_id" :value="__('Administrador')" />
+                                        <x-input class="block mt-1 w-full" type="text" value="{{ $user->user->name }}" disabled />
+                                    </div>
                                 </div>
                             </div>
                         </div>

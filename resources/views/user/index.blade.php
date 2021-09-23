@@ -16,6 +16,7 @@
                                     <th class="px-4 py-3">Name</th>
                                     <th class="px-4 py-3">Email</th>
                                     <th class="px-4 py-3 text-center">Role</th>
+                                    <th class="px-4 py-3 text-center">Administrador</th>
                                     <th class="px-4 py-3 text-center">Status</th>
                                     <th class="px-4 py-3 text-center">Actions</th>
                                 </tr>
@@ -33,6 +34,10 @@
 
                                         <td class="px-4 py-3 text-xs font-semibold border text-center">
                                             <span class="px-2 py-1 font-semibold leading-tight text-green-700 bg-green-100 rounded-sm">{{ $user->role->display_name }}</span>
+                                        </td>
+
+                                        <td class="px-4 py-3 text-xs font-semibold border text-center">
+                                            <span class="px-2 py-1 font-semibold leading-tight text-green-700 bg-green-100 rounded-sm">{{ $user->user->name }}</span>
                                         </td>
 
                                         <td class="px-4 py-3 text-xs font-semibold border text-center">

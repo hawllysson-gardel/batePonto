@@ -25,7 +25,9 @@ class UserController extends Controller
 
             $users = User::whereHas('role', function ($query) use ($employee) {
                 $query->where('name', $employee);
-            })->with('role')->withTrashed()->paginate(10);
+            })->with('role')->with(array('user' => function($query) {
+                $query->select('id','name');
+            }))->withTrashed()->paginate(10);
 
             return response()->view('user.index', compact('users'), 200);
         } catch (\Throwable $th) {
@@ -88,7 +90,9 @@ class UserController extends Controller
     {
         try {
             $user = new User;
-            $user = $user->with('role')->withTrashed()->findOrFail($id);
+            $user = $user->with('role')->with(array('user' => function($query) {
+                $query->select('id','name');
+            }))->withTrashed()->findOrFail($id);
 
             return response()->view('user.show', compact('user'), 200);
         } catch (\Throwable $th) {
