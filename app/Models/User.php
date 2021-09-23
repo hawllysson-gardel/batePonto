@@ -37,19 +37,27 @@ class User extends Authenticatable
         'password',
         'remember_token',
     ];
+    
+    public function users()
+    {
+        return $this->hasMany(User::class);
+    }
+
+    public function user()
+    {
+        return $this->belongsTo(User::class);
+    }
+
+    public function points()
+    {
+        return $this->hasMany(Point::class);
+    }
 
     public function role()
     {
         return $this->belongsTo(Role::class);
     }
 
-    /**
-     * Checks if the user has a role by its name.
-     *
-     * @param string $name      Role name.
-     *
-     * @return bool
-     */
     public function hasRole($name)
     {
         $role = $this->role()->first();
@@ -59,15 +67,5 @@ class User extends Authenticatable
         }
 
         return false;
-    }
-
-    public function users()
-    {
-        return $this->hasMany(User::class);
-    }
-
-    public function user()
-    {
-        return $this->belongsTo(User::class);
     }
 }
