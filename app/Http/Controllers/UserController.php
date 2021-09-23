@@ -74,7 +74,7 @@ class UserController extends Controller
 
             return redirect(route('user.create'))->with(['code' => 201, 'message' => 'Usuário cadastrado com sucesso!']);
         } catch (\Throwable $th) {
-            return redirect(route('user.create'))->with(['code' => 500, 'message' => 'Erro no cadastro do usuário!']);
+            return abort(500, "INTERNAL SERVER ERROR.");
         }
     }
 
@@ -108,7 +108,7 @@ class UserController extends Controller
             $roles = Role::all();
 
             $user  = new User;
-            $user  = $user->with('role')->withTrashed()->findOrFail($id);
+            $user  = $user->with('role')->findOrFail($id);
 
             return response()->view('user.edit', compact('user', 'roles'), 200);
         } catch (\Throwable $th) {
@@ -130,7 +130,7 @@ class UserController extends Controller
 
             return redirect(route('user.edit', ['id' => $request->id]))->with(['code' => 201, 'message' => 'Usuário editado com sucesso!']);
         } catch (\Throwable $th) {
-            return redirect(route('user.edit', ['id' => $request->id]))->with(['code' => 500, 'message' => 'Erro na edição do usuário!']);
+            return abort(404, "NOT FOUND.");
         }
     }
 
@@ -144,11 +144,16 @@ class UserController extends Controller
     {
         try {
             $user = User::findOrFail($id);
+
+            if(auth()->user()->id != $user->user_id) {
+                abort(403, "THIS ACTION IS UNAUTHORIZED.");
+            }
+
             $user->delete();
 
             return back()->with(['code' => 200, 'message' => 'Usuário excluído com sucesso!']);
         } catch (\Throwable $th) {
-            return back()->with(['code' => 500, 'message' => 'Erro na exclusão do usuário!']);
+            return abort(403, "THIS ACTION IS UNAUTHORIZED.");
         }
     }
 
@@ -162,11 +167,16 @@ class UserController extends Controller
     {
         try {
             $user = User::onlyTrashed()->findOrFail($id);
+
+            if(auth()->user()->id != $user->user_id) {
+                abort(403, "THIS ACTION IS UNAUTHORIZED.");
+            }
+            
             $user->restore();
 
             return back()->with(['code' => 200, 'message' => 'Usuário restaurado com sucesso!']);
         } catch (\Throwable $th) {
-            return back()->with(['code' => 500, 'message' => 'Erro na restauração do usuário!']);
+            return abort(403, "THIS ACTION IS UNAUTHORIZED.");
         }
     }
 }
