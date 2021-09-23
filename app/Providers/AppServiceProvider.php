@@ -41,21 +41,5 @@ class AppServiceProvider extends ServiceProvider
         Blade::directive('endrole', function($expression) {
             return "<?php endif; // Auth::user()->hasRole ?>";
         });
-
-        // Call to Auth::user()->can.
-        Blade::directive('permission', function($expression) {
-            return "<?php if (Auth::user()->can({$expression})) : ?>";
-        });
-        Blade::directive('endpermission', function($expression) {
-            return "<?php endif; // Auth::user()->can ?>";
-        });
-
-        // Call to Auth::user()->ability.
-        Blade::directive('ability', function($expression) {
-            return "<?php if (Auth::user()->ability({$expression})) : ?>";
-        });
-        Blade::directive('endability', function($expression) {
-            return "<?php endif; // Auth::user()->ability ?>";
-        });
     }
 }
