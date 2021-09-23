@@ -23,7 +23,8 @@ class User extends Authenticatable
         'birthday',
         'cpf',
         'cep',
-        'address'
+        'address',
+        'user_id'
     ];
 
     /**
@@ -84,16 +85,8 @@ class User extends Authenticatable
         return false;
     }
 
-    /**
-     *Filtering users according to their role 
-     *
-     *@param string $role
-     *@return users collection
-     */
-    public function scopeWithRole($query, $role)
+    public function users()
     {
-        return $query->whereHas('roles', function ($query) use ($role) {
-            $query->where('name', $role);
-        });
+        return $this->hasMany(User::class);
     }
 }

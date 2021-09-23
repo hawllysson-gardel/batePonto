@@ -31,7 +31,8 @@ class StoreUserRequest extends FormRequest
             'birthday' => 'nullable|date_format:Y-m-d',
             'cpf'      => 'required|unique:users|digits:11',
             'cep'      => 'required|digits:8',
-            'address'  => 'required|string|max:255'
+            'address'  => 'required|string|max:255',
+            'role'     => 'required|exists:roles,id'
         ];
     }
 }

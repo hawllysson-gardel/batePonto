@@ -31,7 +31,8 @@ class UserFactory extends Factory
             'birthday'       => $this->faker->dateTimeThisCentury->format('Y-m-d'),
             'cpf'            => $this->faker->unique()->cpf(false),
             'cep'            => '88888888',
-            'address'        => $this->faker->unique()->address
+            'address'        => $this->faker->unique()->address,
+            'user_id'        => null
         ];
     }
 }

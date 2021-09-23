@@ -48,9 +48,12 @@ Route::group(['prefix' => 'dashboard', 'middleware' => 'auth'], function () {
 
     Route::group(['prefix' => 'user', 'middleware' => ['role:administrator']], function () {
         Route::get('/', [UserController::class, 'index'])->name('users');
-        Route::delete('/{id}', [UserController::class, 'destroy'])->name('user.delete');
-        Route::post('/{id}', [UserController::class, 'restore'])->name('user.restore');
+        Route::delete('/{id}', [UserController::class, 'destroy'])->where('id', '[0-9]+')->name('user.delete');
+        Route::post('/{id}', [UserController::class, 'restore'])->where('id', '[0-9]+')->name('user.restore');
         Route::get('/create', [UserController::class, 'create'])->name('user.create');
         Route::post('/', [UserController::class, 'store'])->name('user.store');
+        Route::get('/edit/{id}', [UserController::class, 'edit'])->where('id', '[0-9]+')->name('user.edit');
+        Route::get('/show/{id}', [UserController::class, 'show'])->where('id', '[0-9]+')->name('user.show');
+        Route::put('/{id}', [UserController::class, 'update'])->where('id', '[0-9]+')->name('user.update');
     });
 });
