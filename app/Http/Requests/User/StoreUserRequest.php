@@ -3,6 +3,7 @@
 namespace App\Http\Requests\User;
 
 use Illuminate\Foundation\Http\FormRequest;
+use Illuminate\Validation\Rules\Password;
 
 class StoreUserRequest extends FormRequest
 {
@@ -26,21 +27,11 @@ class StoreUserRequest extends FormRequest
         return [
             'name'     => 'required|string|max:255',
             'email'    => 'required|string|email|max:255|unique:users',
-            'password' => ['required', 'confirmed', 'string', Password::min(8)->letters()->mixedCase()->numbers()->symbols()->uncompromised()]
-        ];
-    }
-
-    public function messages()
-    {
-        return [
-            'email.required'     => 'O email é obrigatório!',
-            'email.string'       => 'Insira um email válido!',
-            'email.email'        => 'Insira um email válido!',
-
-            'password.required'  => 'A senha é obrigatória!',
-            'password.confirmed' => 'Senha não confirmada!',
-            'password.string'    => 'Insira uma senha válida!',
-            'password.min'       => 'A senha deve ser maior ou igual a 8 caracteres!'
+            'password' => ['required', 'confirmed', 'string', Password::min(8)->letters()->mixedCase()->numbers()->symbols()->uncompromised()],
+            'birthday' => 'nullable|date_format:Y-m-d',
+            'cpf'      => 'required|unique:users|digits:11',
+            'cep'      => 'required|digits:8',
+            'address'  => 'required|string|max:255'
         ];
     }
 }

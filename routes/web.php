@@ -41,12 +41,6 @@ Route::group(['prefix' => 'reset-password', 'middleware' => 'guest'], function (
     Route::post('/', [NewPasswordController::class, 'store'])->name('password.update');
 });
 
-// REGISTER
-Route::group(['prefix' => 'register', 'middleware' => 'guest'], function () {
-    Route::get('/', [RegisteredUserController::class, 'create'])->name('register');
-    Route::post('/', [RegisteredUserController::class, 'store']);
-});
-
 Route::group(['prefix' => 'dashboard', 'middleware' => 'auth'], function () {
     Route::get('/', function () {
         return view('dashboard');
@@ -57,5 +51,6 @@ Route::group(['prefix' => 'dashboard', 'middleware' => 'auth'], function () {
         Route::delete('/{id}', [UserController::class, 'destroy'])->name('user.delete');
         Route::post('/{id}', [UserController::class, 'restore'])->name('user.restore');
         Route::get('/create', [UserController::class, 'create'])->name('user.create');
+        Route::post('/', [UserController::class, 'store'])->name('user.store');
     });
 });

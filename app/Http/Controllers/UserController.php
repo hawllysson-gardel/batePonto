@@ -4,6 +4,7 @@ namespace App\Http\Controllers;
 
 use App\Models\User;
 use Illuminate\Http\Request;
+use Illuminate\Support\Facades\Hash;
 
 use App\Http\Requests\User\StoreUserRequest;
 
@@ -46,9 +47,19 @@ class UserController extends Controller
     public function store(StoreUserRequest $request)
     {
         try {
-            $user = User::create($request->all());
+            $user = new User;
 
-            return back()->with(['code' => 201, 'message' => 'Usuário cadastrado com sucesso!']);
+            $user->name     = $request->name;
+            $user->email    = $request->email;
+            $user->password = Hash::make($request->password);
+            $user->birthday = $request->birthday;
+            $user->cpf      = $request->cpf;
+            $user->cep      = $request->cep;
+            $user->address  = $request->address;
+
+            $user->save();
+
+            return response()->view('user.create', compact('user'), 201);
         } catch (\Throwable $th) {
             return back()->with(['code' => 500, 'message' => 'Erro no cadastro do usuário!']);
         }
