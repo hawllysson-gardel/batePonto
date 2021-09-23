@@ -32,9 +32,7 @@
                                         </td>
 
                                         <td class="px-4 py-3 text-xs font-semibold border text-center">
-                                            @foreach($user->roles()->get() as $role)
-                                                <span class="px-2 py-1 font-semibold leading-tight text-green-700 bg-green-100 rounded-sm">{{ $role->display_name }}</span>
-                                            @endforeach
+                                            <span class="px-2 py-1 font-semibold leading-tight text-green-700 bg-green-100 rounded-sm">{{ $user->role->display_name }}</span>
                                         </td>
 
                                         <td class="px-4 py-3 text-xs font-semibold border text-center">

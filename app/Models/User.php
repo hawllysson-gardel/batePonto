@@ -24,7 +24,8 @@ class User extends Authenticatable
         'cpf',
         'cep',
         'address',
-        'user_id'
+        'user_id',
+        'role_id'
     ];
 
     /**
@@ -37,49 +38,24 @@ class User extends Authenticatable
         'remember_token',
     ];
 
-    /**
-     * Many-to-Many relations with Role.
-     *
-     * @return \Illuminate\Database\Eloquent\Relations\BelongsToMany
-     */
-    public function roles()
+    public function role()
     {
-        return $this->belongsToMany(Role::class, 'role_user', 'user_id', 'role_id');
+        return $this->belongsTo(Role::class);
     }
 
     /**
      * Checks if the user has a role by its name.
      *
-     * @param string|array $names      Role name or array of role names.
-     * @param bool         $requireAll All roles in the array are required.
+     * @param string $name      Role name.
      *
      * @return bool
      */
-    public function hasRole($names, $requireAll = false)
+    public function hasRole($name)
     {
-        if (is_array($names)) {
-            foreach ($names as $name) {
-                $hasRole = $this->hasRole($name);
-
-                if ($hasRole && !$requireAll) {
-                    return true;
-                } elseif (!$hasRole && $requireAll) {
-                    return false;
-                }
-            }
-
-            // If we've made it this far and $requireAll is FALSE, then NONE of the roles were found.
-            // If we've made it this far and $requireAll is TRUE, then ALL of the roles were found.
-            return $requireAll;
-        } else {
-            // Implement caching in the future.
-            $roles = $this->roles()->get();
-
-            foreach ($roles as $role) {
-                if ($role->name == $names) {
-                    return true;
-                }
-            }
+        $role = $this->role()->first();
+        
+        if ($role->name == $name) {
+            return true;
         }
 
         return false;

@@ -88,24 +88,19 @@
                                     </div>
 
                                     <div class="md:col-span-2">
-                                        <x-label for="role" :value="__('Role')" />
-                                        <x-input class="block mt-1 w-full" type="text" value="{{ $user->roles[0]->display_name }}" disabled/>
-                                    </div>
+                                        <x-label for="role_id" :value="__('Role')" />
+                                        
+                                        <select id="role_id" name="role_id" class="block mt-1 w-full rounded-md shadow-sm border-gray-300 focus:border-indigo-300 focus:ring focus:ring-indigo-200 focus:ring-opacity-50">  
+                                            @foreach($roles as $role)    
+                                                <option @if($user->role->id == $role->id) selected @endif value="{{ $role->id }}">{{ $role->display_name }}</option>
+                                            @endforeach
+                                        </select>
 
-                                    <div class="md:col-span-3">
-                                        <x-label for="password" :value="__('Password')" />
-                                        <x-input id="password" class="block mt-1 w-full" type="password" name="password" maxlength="255" autocomplete="new-password" />
-
-                                        @error('password')
+                                        @error('role_id')
                                             <div class="font-medium text-red-600 pt-2">
                                                 <strong>{{ $message }}</strong>
                                             </div>
                                         @enderror
-                                    </div>
-
-                                    <div class="md:col-span-2">
-                                        <x-label for="password_confirmation" :value="__('Confirm Password')" />
-                                        <x-input id="password_confirmation" class="block mt-1 w-full" type="password" name="password_confirmation" maxlength="255"/>
                                     </div>
 
                                     <div class="md:col-span-5 text-right pt-3">

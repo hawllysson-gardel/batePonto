@@ -7,6 +7,8 @@ use Illuminate\Database\Eloquent\Factories\Factory;
 use Illuminate\Support\Str;
 use Illuminate\Support\Facades\Hash;
 
+use App\Models\Role;
+
 class UserFactory extends Factory
 {
     /**
@@ -32,7 +34,8 @@ class UserFactory extends Factory
             'cpf'            => $this->faker->unique()->cpf(false),
             'cep'            => '88888888',
             'address'        => $this->faker->unique()->address,
-            'user_id'        => null
+            'user_id'        => null,
+            'role_id'        => Role::all()->random()->id
         ];
     }
 }

@@ -86,15 +86,15 @@
                                     </div>
 
                                     <div class="md:col-span-2">
-                                        <x-label for="role" :value="__('Role')" />
+                                        <x-label for="role_id" :value="__('Role')" />
                                         
-                                        <select :value="old('role')" required id="role" name="role" class="block mt-1 w-full rounded-md shadow-sm border-gray-300 focus:border-indigo-300 focus:ring focus:ring-indigo-200 focus:ring-opacity-50">  
+                                        <select :value="old('role_id')" required id="role_id" name="role_id" class="block mt-1 w-full rounded-md shadow-sm border-gray-300 focus:border-indigo-300 focus:ring focus:ring-indigo-200 focus:ring-opacity-50">  
                                             @foreach($roles as $role)    
                                                 <option value="{{ $role->id }}">{{ $role->display_name }}</option>
                                             @endforeach
                                         </select>
 
-                                        @error('role')
+                                        @error('role_id')
                                             <div class="font-medium text-red-600 pt-2">
                                                 <strong>{{ $message }}</strong>
                                             </div>

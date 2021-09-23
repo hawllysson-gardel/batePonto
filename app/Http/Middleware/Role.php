@@ -27,19 +27,15 @@ class Role
      *
      * @param  \Illuminate\Http\Request  $request
      * @param  \Closure  $next
-     * @param  $roles
+     * @param  $role
      * @return mixed
      */
-    public function handle(Request $request, Closure $next, $roles)
+    public function handle(Request $request, Closure $next, $role)
     {
-        if (!is_array($roles)) {
-			$roles = explode(self::DELIMITER, $roles);
-		}
-
-		if ($this->auth->guest() || !$request->user()->hasRole($roles)) {
+		if ($this->auth->guest() || !$request->user()->hasRole($role)) {
 			abort(403);
 		}
-
+        
         return $next($request);
     }
 }

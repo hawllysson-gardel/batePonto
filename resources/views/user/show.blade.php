@@ -48,7 +48,7 @@
 
                                     <div class="md:col-span-2">
                                         <x-label for="role" :value="__('Role')" />
-                                        <x-input class="block mt-1 w-full" type="text" value="{{ $user->roles[0]->display_name }}" disabled/>
+                                        <x-input class="block mt-1 w-full" type="text" value="{{ $user->role->display_name }}" disabled/>
                                     </div>
                                 </div>
                             </div>

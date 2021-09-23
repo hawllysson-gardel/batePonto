@@ -32,7 +32,7 @@ class StoreUserRequest extends FormRequest
             'cpf'      => 'required|unique:users|digits:11',
             'cep'      => 'required|digits:8',
             'address'  => 'required|string|max:255',
-            'role'     => 'required|exists:roles,id'
+            'role_id'  => 'required|exists:roles,id'
         ];
     }
 }

@@ -23,11 +23,13 @@ class CreateUsersTable extends Migration
             $table->string('cpf', 11)->unique();
             $table->string('cep', 8);
             $table->string('address');
+            $table->foreignId('role_id')->comment = 'ID da Função - Tabela "roles"';
             $table->foreignId('user_id')->nullable()->comment = 'ID do Usuário que Cadastrou - Tabela "users"';
             $table->softDeletes();
             $table->timestamps();
 
             $table->foreign('user_id')->references('id')->on('users')->onDelete('set null');
+            $table->foreign('role_id')->references('id')->on('roles')->onUpdate('cascade')->onDelete('cascade');
         });
     }
 

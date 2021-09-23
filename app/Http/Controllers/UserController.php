@@ -22,7 +22,7 @@ class UserController extends Controller
     {
         try {
             $users = new User;
-            $users = $users->withTrashed()->paginate(10);
+            $users = $users->with('role')->withTrashed()->paginate(10);
 
             return response()->view('user.index', compact('users'), 200);
         } catch (\Throwable $th) {
@@ -64,11 +64,10 @@ class UserController extends Controller
             $user->cpf      = $request->cpf;
             $user->cep      = $request->cep;
             $user->address  = $request->address;
+            $user->role_id  = $request->role_id;
             $user->user_id  = auth()->user()->id;
 
             $user->save();
-
-            $user->roles()->attach($request->role);
 
             return redirect(route('user.create'))->with(['code' => 201, 'message' => 'Usuário cadastrado com sucesso!']);
         } catch (\Throwable $th) {
@@ -85,7 +84,8 @@ class UserController extends Controller
     public function show($id)
     {
         try {
-            $user = User::with('roles')->withTrashed()->findOrFail($id);
+            $user = new User;
+            $user = $user->with('role')->withTrashed()->findOrFail($id);
 
             return response()->view('user.show', compact('user'), 200);
         } catch (\Throwable $th) {
@@ -102,9 +102,12 @@ class UserController extends Controller
     public function edit($id)
     {
         try {
-            $user = User::with('roles')->findOrFail($id);
+            $roles = Role::all();
 
-            return response()->view('user.edit', compact('user'), 200);
+            $user  = new User;
+            $user  = $user->with('role')->withTrashed()->findOrFail($id);
+
+            return response()->view('user.edit', compact('user', 'roles'), 200);
         } catch (\Throwable $th) {
             return redirect(route('user.edit'))->with(['code' => 500, 'message' => 'Erro na tela de edição do usuário!']);
         }

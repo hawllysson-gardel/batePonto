@@ -28,11 +28,11 @@ class UpdateUserRequest extends FormRequest
         return [
             'name'     => 'nullable|string|max:255',
             'email'    => ['nullable', 'string', 'email', 'max:255', Rule::unique('users')->ignore($this->id)],
-            'password' => ['nullable', 'confirmed', 'string', Password::min(8)->letters()->mixedCase()->numbers()->symbols()->uncompromised()],
             'birthday' => 'nullable|date_format:Y-m-d',
             'cpf'      => ['nullable', 'digits:11', Rule::unique('users')->ignore($this->id)],
             'cep'      => 'nullable|digits:8',
-            'address'  => 'nullable|string|max:255'
+            'address'  => 'nullable|string|max:255',
+            'role_id'  => 'nullable|exists:roles,id'
         ];
     }
 }
