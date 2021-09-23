@@ -31,21 +31,8 @@ class AuthenticatedSessionRequest extends FormRequest
     public function rules()
     {
         return [
-            'email'    => 'required|string|email',
+            'email'    => 'required|string|email|max:255',
             'password' => ['required', 'string', Password::min(8)->letters()->mixedCase()->numbers()->symbols()]
-        ];
-    }
-
-    public function messages()
-    {
-        return [
-            'email.required'    => 'O email é obrigatório!',
-            'email.string'      => 'Insira um email válido!',
-            'email.email'       => 'Insira um email válido!',
-
-            'password.required' => 'A senha é obrigatória!',
-            'password.string'   => 'Insira uma senha válida!',
-            'password.min'      => 'A senha deve ser maior ou igual a 8 caracteres!'
         ];
     }
 

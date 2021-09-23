@@ -27,13 +27,4 @@ class PasswordResetLinkRequest extends FormRequest
             'email' => 'required|string|email'
         ];
     }
-
-    public function messages()
-    {
-        return [
-            'email.required' => 'O email é obrigatório!',
-            'email.string'   => 'Insira um email válido!',
-            'email.email'    => 'Insira um email válido!'
-        ];
-    }
 }
