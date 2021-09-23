@@ -21,8 +21,10 @@ class UserController extends Controller
     public function index()
     {
         try {
+            $employee = 'employee';
+
             $users = User::whereHas('role', function ($query) use ($employee) {
-                $query->where('name', 'employee');
+                $query->where('name', $employee);
             })->with('role')->withTrashed()->paginate(10);
 
             return response()->view('user.index', compact('users'), 200);
