@@ -19,7 +19,7 @@ class CreateUsersTable extends Migration
             $table->string('email')->unique();
             $table->string('password');
             $table->rememberToken();
-            $table->date('date_of_birth')->nullable();
+            $table->date('birthday')->nullable();
             $table->string('cpf', 11)->unique();
             $table->string('cep', 8);
             $table->string('address');

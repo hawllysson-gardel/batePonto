@@ -5,6 +5,8 @@ namespace App\Http\Controllers;
 use App\Models\User;
 use Illuminate\Http\Request;
 
+use App\Http\Requests\User\StoreUserRequest;
+
 class UserController extends Controller
 {
     /**
@@ -32,18 +34,24 @@ class UserController extends Controller
      */
     public function create()
     {
-        //
+        return view('user.create');
     }
 
     /**
      * Store a newly created resource in storage.
      *
-     * @param  \Illuminate\Http\Request  $request
+     * @param  \App\Http\Requests\User\StoreUserRequest $request
      * @return \Illuminate\Http\Response
      */
-    public function store(Request $request)
+    public function store(StoreUserRequest $request)
     {
-        //
+        try {
+            $user = User::create($request->all());
+
+            return back()->with(['code' => 201, 'message' => 'Usuário cadastrado com sucesso!']);
+        } catch (\Throwable $th) {
+            return back()->with(['code' => 500, 'message' => 'Erro no cadastro do usuário!']);
+        }
     }
 
     /**
@@ -95,6 +103,24 @@ class UserController extends Controller
             return back()->with(['code' => 200, 'message' => 'Usuário excluído com sucesso!']);
         } catch (\Throwable $th) {
             return back()->with(['code' => 500, 'message' => 'Erro na exclusão do usuário!']);
+        }
+    }
+
+    /**
+     * Restore the specified resource from storage.
+     *
+     * @param  $id
+     * @return \Illuminate\Http\Response
+     */
+    public function restore($id)
+    {
+        try {
+            $user = User::onlyTrashed()->findOrFail($id);
+            $user->restore();
+
+            return back()->with(['code' => 200, 'message' => 'Usuário restaurado com sucesso!']);
+        } catch (\Throwable $th) {
+            return back()->with(['code' => 500, 'message' => 'Erro na restauração do usuário!']);
         }
     }
 }
