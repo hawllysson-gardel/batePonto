@@ -21,8 +21,9 @@ class UserController extends Controller
     public function index()
     {
         try {
-            $users = new User;
-            $users = $users->with('role')->withTrashed()->paginate(10);
+            $users = User::whereHas('role', function ($query) use ($employee) {
+                $query->where('name', 'employee');
+            })->with('role')->withTrashed()->paginate(10);
 
             return response()->view('user.index', compact('users'), 200);
         } catch (\Throwable $th) {
