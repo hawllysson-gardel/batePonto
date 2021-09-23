@@ -17,12 +17,12 @@ class RoleSeeder extends Seeder
     {
         $roles = [
             [
-                'name'         => Config::get('constants.roles.administrator'),
+                'name'         => 'administrator',
                 'display_name' => 'Administrador',
                 'description'  => 'Administrador'
             ],
             [
-                'name'         => Config::get('constants.roles.employee'),
+                'name'         => 'employee',
                 'display_name' => 'Funcionário',
                 'description'  => 'Funcionário'
             ]
