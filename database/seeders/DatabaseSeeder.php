@@ -15,15 +15,17 @@ class DatabaseSeeder extends Seeder
      */
     public function run()
     {
-        $this->call(RoleSeeder::class);
-
         $faker = \Faker\Factory::create('pt_BR');
 
-        $administrator_one = \App\Models\User::factory()->create(
+        // Generate Roles
+        $this->call(RoleSeeder::class);
+
+        // Generate Administrators
+        \App\Models\User::factory()->create(
             [
                 'name'           => $faker->name(),
                 'email'          => $faker->unique()->safeEmail(),
-                'password'       => Hash::make('81014031Hg@'),
+                'password'       => Hash::make('P@ssword123'),
                 'remember_token' => Str::random(10),
                 'birthday'       => $faker->dateTimeThisCentury->format('Y-m-d'),
                 'cpf'            => $faker->unique()->cpf(false),
@@ -33,12 +35,11 @@ class DatabaseSeeder extends Seeder
                 'role_id'        => 1
             ]
         );
-
-        $administrator_two = \App\Models\User::factory()->create(
+        \App\Models\User::factory()->create(
             [
                 'name'           => $faker->name(),
                 'email'          => $faker->unique()->safeEmail(),
-                'password'       => Hash::make('81014031Hg@'),
+                'password'       => Hash::make('P@ssword123'),
                 'remember_token' => Str::random(10),
                 'birthday'       => $faker->dateTimeThisCentury->format('Y-m-d'),
                 'cpf'            => $faker->unique()->cpf(false),
@@ -51,5 +52,8 @@ class DatabaseSeeder extends Seeder
 
         // Generate Employees
         \App\Models\User::factory(50)->create();
+
+        // Generate Points
+        \App\Models\Point::factory(1000)->create();
     }
 }
