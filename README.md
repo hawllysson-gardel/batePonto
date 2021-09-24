@@ -14,25 +14,25 @@ Palavra-passe: pass123@Word
 
 Lista de alguns usuários mokados:
 
-Tipo:  Administrador
-Email: salgado.martinho@example.net
-Senha: pass123@Word
+Tipo:  Administrador  
+Email: salgado.martinho@example.net  
+Senha: pass123@Word  
 
-Tipo:  Administrador
-Email: emeireles@example.org
-Senha: pass123@Word
+Tipo:  Administrador  
+Email: emeireles@example.org  
+Senha: pass123@Word  
 
-Tipo:  Funcionário
-Email: lira.breno@example.com
-Senha: pass123@Word
+Tipo:  Funcionário  
+Email: lira.breno@example.com  
+Senha: pass123@Word  
 
-Tipo:  Funcionário
-Email: mascarenhas.teo@example.org
-Senha: pass123@Word
+Tipo:  Funcionário  
+Email: mascarenhas.teo@example.org  
+Senha: pass123@Word  
 
-Tipo:  Funcionário
-Email: soares.milena@example.com
-Senha: pass123@Word
+Tipo:  Funcionário  
+Email: soares.milena@example.com  
+Senha: pass123@Word  
 
 ### 📋 Pré-requisitos
 
