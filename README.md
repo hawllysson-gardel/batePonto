@@ -1,64 +1,129 @@
-<p align="center"><a href="https://laravel.com" target="_blank"><img src="https://raw.githubusercontent.com/laravel/art/master/logo-lockup/5%20SVG/2%20CMYK/1%20Full%20Color/laravel-logolockup-cmyk-red.svg" width="400"></a></p>
+# Título do projeto
 
-<p align="center">
-<a href="https://travis-ci.org/laravel/framework"><img src="https://travis-ci.org/laravel/framework.svg" alt="Build Status"></a>
-<a href="https://packagist.org/packages/laravel/framework"><img src="https://img.shields.io/packagist/dt/laravel/framework" alt="Total Downloads"></a>
-<a href="https://packagist.org/packages/laravel/framework"><img src="https://img.shields.io/packagist/v/laravel/framework" alt="Latest Stable Version"></a>
-<a href="https://packagist.org/packages/laravel/framework"><img src="https://img.shields.io/packagist/l/laravel/framework" alt="License"></a>
-</p>
+Sistema simples para controle da jornada de trabalho, bateponto. O projeto já se encontra em produção no IP (http://104.131.46.150/).
+Inicialmente o projeto se encontra hospedado no ambiente da Digital Ocean.
 
-## About Laravel
+## 🚀 Começando
 
-Laravel is a web application framework with expressive, elegant syntax. We believe development must be an enjoyable and creative experience to be truly fulfilling. Laravel takes the pain out of development by easing common tasks used in many web projects, such as:
+NÃO é necessário instalar o projeto na sua máquina local para usá-lo, pois ele já se encontra em produção no IP (http://104.131.46.150/). TODAS as senha de todos os usuários mokados estão como "pass123@Word" .
 
-- [Simple, fast routing engine](https://laravel.com/docs/routing).
-- [Powerful dependency injection container](https://laravel.com/docs/container).
-- Multiple back-ends for [session](https://laravel.com/docs/session) and [cache](https://laravel.com/docs/cache) storage.
-- Expressive, intuitive [database ORM](https://laravel.com/docs/eloquent).
-- Database agnostic [schema migrations](https://laravel.com/docs/migrations).
-- [Robust background job processing](https://laravel.com/docs/queues).
-- [Real-time event broadcasting](https://laravel.com/docs/broadcasting).
+Para acessar o phpmyadmin do servidor de produção basta acessar (http://104.131.46.150:8081/).
+Servidor:      mysql
+Utilizador:    root
+Palavra-passe: pass123@Word
 
-Laravel is accessible, powerful, and provides tools required for large, robust applications.
+Lista de alguns usuários mokados:
 
-## Learning Laravel
+Tipo:  Administrador
+Email: salgado.martinho@example.net
+Senha: pass123@Word
 
-Laravel has the most extensive and thorough [documentation](https://laravel.com/docs) and video tutorial library of all modern web application frameworks, making it a breeze to get started with the framework.
+Tipo:  Administrador
+Email: emeireles@example.org
+Senha: pass123@Word
 
-If you don't feel like reading, [Laracasts](https://laracasts.com) can help. Laracasts contains over 1500 video tutorials on a range of topics including Laravel, modern PHP, unit testing, and JavaScript. Boost your skills by digging into our comprehensive video library.
+Tipo:  Funcionário
+Email: lira.breno@example.com
+Senha: pass123@Word
 
-## Laravel Sponsors
+Tipo:  Funcionário
+Email: mascarenhas.teo@example.org
+Senha: pass123@Word
 
-We would like to extend our thanks to the following sponsors for funding Laravel development. If you are interested in becoming a sponsor, please visit the Laravel [Patreon page](https://patreon.com/taylorotwell).
+Tipo:  Funcionário
+Email: soares.milena@example.com
+Senha: pass123@Word
 
-### Premium Partners
+### 📋 Pré-requisitos
 
-- **[Vehikl](https://vehikl.com/)**
-- **[Tighten Co.](https://tighten.co)**
-- **[Kirschbaum Development Group](https://kirschbaumdevelopment.com)**
-- **[64 Robots](https://64robots.com)**
-- **[Cubet Techno Labs](https://cubettech.com)**
-- **[Cyber-Duck](https://cyber-duck.co.uk)**
-- **[Many](https://www.many.co.uk)**
-- **[Webdock, Fast VPS Hosting](https://www.webdock.io/en)**
-- **[DevSquad](https://devsquad.com)**
-- **[Curotec](https://www.curotec.com/services/technologies/laravel/)**
-- **[OP.GG](https://op.gg)**
-- **[CMS Max](https://www.cmsmax.com/)**
-- **[WebReinvent](https://webreinvent.com/?utm_source=laravel&utm_medium=github&utm_campaign=patreon-sponsors)**
+De que coisas você precisa para instalar o software e como instalá-lo?
 
-## Contributing
+```
+PHP 8
+MySQL Latest
+NodeJS
+Composer
+NPM
+Xampp
+Git
+```
 
-Thank you for considering contributing to the Laravel framework! The contribution guide can be found in the [Laravel documentation](https://laravel.com/docs/contributions).
+### 🔧 Instalação
 
-## Code of Conduct
+Essa é a série de passo-a-passo que você deve executar para ter um ambiente de desenvolvimento em execução:
 
-In order to ensure that the Laravel community is welcoming to all, please review and abide by the [Code of Conduct](https://laravel.com/docs/contributions#code-of-conduct).
+Passos:
 
-## Security Vulnerabilities
+```
+Instalar todos os pré-requisitos mencionados anteriormente.
+```
 
-If you discover a security vulnerability within Laravel, please send an e-mail to Taylor Otwell via [taylor@laravel.com](mailto:taylor@laravel.com). All security vulnerabilities will be promptly addressed.
+```
+Clonar o projeto para a pasta htdocs dentro da pasta raiz de instalação do XAMPP.
+```
 
-## License
+```
+Executar o comando: composer install
+```
 
-The Laravel framework is open-sourced software licensed under the [MIT license](https://opensource.org/licenses/MIT).
+```
+Executar o comando: npm install
+```
+
+```
+Criar o banco de dados chamado bateponto com configuração utf8mb4_unicode_ci no phpmyadmin.
+```
+
+```
+Copiar o arquivo .env.example para .env.
+```
+
+```
+Configurar a conexão com o banco de dados no arquivo .env.
+```
+
+```
+Configurar a conexão com o servidor SMTP (para envio de emails de recuperação de senha) no .env.
+```
+
+```
+Gerar a key do sistema através do comando php artisan key:generate
+```
+
+```
+Criar as tabelas do banco de dados através do comando php artisan migrate
+```
+
+```
+Criar os dados fakes do banco de dados através do comando php artisan db:seed
+```
+
+Esse ultimo comando cria vários usuários de teste nas tabelas. Todos os acessos estão com a senha padrão pass123@Word .
+
+## 📦 Desenvolvimento
+
+Todo o desenvolvimento foi em cima do framework Laravel. Utilizando migrations, eloquent, seeds, fakers, factories, model, middlewares, controllers e form requests.
+
+## 🛠️ Construído com
+
+* [Laravel](https://laravel.com/) - Framework usado para todo o desenvolvimento.
+* [Laravel Breeze](https://github.com/laravel/breeze) - Responsável pela autenticação do projeto.
+* [MySQL](https://www.mysql.com/) - Banco de Dados usado no Framework.
+* [Git](https://git-scm.com/) - Usada para versionameto do projeto.
+
+## 📌 Versão
+
+Nós usamos [Git](https://git-scm.com/) para controle de versão. 
+
+## ✒️ Autores
+
+* **Hawllysson Gardel Queiroz Almeida** - *Versão Inicial* - [Hawllysson](https://github.com/hawllysson-gardel)
+
+## 🎁 Expressões de gratidão
+
+* Conte a outras pessoas sobre este projeto 📢
+* Convide alguém da equipe para uma cerveja 🍺 
+* Obrigado publicamente 🤓.
+
+---
+⌨️ com ❤️ por [Hawllysson](https://github.com/hawllysson-gardel) 😊
