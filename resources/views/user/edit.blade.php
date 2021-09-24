@@ -56,7 +56,7 @@
 
                                     <div class="md:col-span-1">
                                         <x-label for="cep" :value="__('CEP')" />
-                                        <x-input id="cep" class="block mt-1 w-full" type="text" name="cep" value="{{ $user->cep }}" maxlength="8"/>
+                                        <x-input onchange="getAddress()" id="cep" class="block mt-1 w-full" type="text" name="cep" value="{{ $user->cep }}" maxlength="8"/>
                                         
                                         @error('cep')
                                             <div class="font-medium text-red-600 pt-2">
@@ -117,3 +117,42 @@
         </div>
     </div>
 </x-app-layout>
+
+<script>
+    function getAddress() {
+        var cep = document.getElementById("cep").value;
+
+        var zip_code = cep.replace(/\D/g, '');
+
+        if (zip_code != "") {
+            var validacep = /^[0-9]{8}$/;
+            
+            if(validacep.test(zip_code)) {
+                var url = "https://viacep.com.br/ws/"+ cep +"/json/?callback=?";
+
+                getJSON(url, function(data) {
+                    if (!("erro" in data)) {
+                        var address = cep + ", " + data.logradouro + ", " + data.bairro + ", " + data.localidade + " - " + data.uf;
+
+                        document.getElementById("address").value = address;
+                    }
+                });
+            }
+        }
+    }
+        
+    function getJSON(url, success) {
+        var ud = '_' + +new Date,
+            script = document.createElement('script'),
+            head = document.getElementsByTagName('head')[0] 
+                || document.documentElement;
+
+        window[ud] = function(data) {
+            head.removeChild(script);
+            success && success(data);
+        };
+
+        script.src = url.replace('callback=?', 'callback=' + ud);
+        head.appendChild(script);
+    }
+</script>
