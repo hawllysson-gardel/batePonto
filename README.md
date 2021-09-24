@@ -1,4 +1,4 @@
-# Título do projeto
+# BATEPONTO
 
 Sistema simples para controle da jornada de trabalho, bateponto. O projeto já se encontra em produção no IP (http://104.131.46.150/).
 Inicialmente o projeto se encontra hospedado no ambiente da Digital Ocean.
