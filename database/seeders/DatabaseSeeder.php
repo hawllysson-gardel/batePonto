@@ -25,7 +25,7 @@ class DatabaseSeeder extends Seeder
             [
                 'name'           => $faker->name(),
                 'email'          => $faker->unique()->safeEmail(),
-                'password'       => Hash::make('P@ssword123'),
+                'password'       => Hash::make('pass123@Word'),
                 'remember_token' => Str::random(10),
                 'birthday'       => $faker->dateTimeThisCentury->format('Y-m-d'),
                 'cpf'            => $faker->unique()->cpf(false),
@@ -39,7 +39,7 @@ class DatabaseSeeder extends Seeder
             [
                 'name'           => $faker->name(),
                 'email'          => $faker->unique()->safeEmail(),
-                'password'       => Hash::make('P@ssword123'),
+                'password'       => Hash::make('pass123@Word'),
                 'remember_token' => Str::random(10),
                 'birthday'       => $faker->dateTimeThisCentury->format('Y-m-d'),
                 'cpf'            => $faker->unique()->cpf(false),
