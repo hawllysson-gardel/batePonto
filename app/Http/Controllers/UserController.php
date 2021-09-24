@@ -27,7 +27,7 @@ class UserController extends Controller
                 $query->where('name', $employee);
             })->with('role')->with(array('user' => function($query) {
                 $query->select('id','name');
-            }))->withTrashed()->paginate(10);
+            }))->withTrashed()->orderBy('created_at', 'DESC')->paginate(10);
 
             return response()->view('user.index', compact('users'), 200);
         } catch (\Throwable $th) {

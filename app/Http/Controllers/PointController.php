@@ -17,7 +17,7 @@ class PointController extends Controller
     public function index()
     {
         try {
-            $points = Point::where('user_id', auth()->user()->id)->paginate(10);
+            $points = Point::where('user_id', auth()->user()->id)->orderBy('created_at', 'DESC')->paginate(10);
 
             return response()->view('dashboard', compact('points'), 200);
         } catch (\Throwable $th) {
@@ -41,7 +41,7 @@ class PointController extends Controller
                 $query->select('id','name', 'role_id', 'user_id')->with('role')->with(array('user' => function($query) {
                     $query->select('id','name');
                 }));
-            }))->paginate(10);
+            }))->orderBy('created_at', 'DESC')->paginate(10);
 
             return response()->view('point.index', compact('points'), 200);
         } catch (\Throwable $th) {
