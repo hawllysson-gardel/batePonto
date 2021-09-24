@@ -115,7 +115,7 @@ Todo o desenvolvimento foi em cima do framework Laravel. Utilizando migrations, 
 
 ## 📌 Versão
 
-Nós usamos [Git](https://git-scm.com/) para controle de versão. 
+Este projeto usa o GIT [Git](https://git-scm.com/) para controle de versão. 
 
 ## ✒️ Autores
 
