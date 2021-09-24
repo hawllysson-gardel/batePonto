@@ -7,10 +7,10 @@ Inicialmente o projeto se encontra hospedado no ambiente da Digital Ocean.
 
 NÃO é necessário instalar o projeto na sua máquina local para usá-lo, pois ele já se encontra em produção no IP (http://104.131.46.150/). TODAS as senha de todos os usuários mokados estão como "pass123@Word" .
 
-Para acessar o phpmyadmin do servidor de produção basta acessar (http://104.131.46.150:8081/).
-Servidor:      mysql
-Utilizador:    root
-Palavra-passe: pass123@Word
+Para acessar o phpmyadmin do servidor de produção basta acessar (http://104.131.46.150:8081/).  
+Servidor:      mysql  
+Utilizador:    root  
+Palavra-passe: pass123@Word  
 
 Lista de alguns usuários mokados:
 
@@ -110,6 +110,8 @@ Todo o desenvolvimento foi em cima do framework Laravel. Utilizando migrations, 
 * [Laravel Breeze](https://github.com/laravel/breeze) - Responsável pela autenticação do projeto.
 * [MySQL](https://www.mysql.com/) - Banco de Dados usado no Framework.
 * [Git](https://git-scm.com/) - Usada para versionameto do projeto.
+* [Docker](https://www.docker.com/) - Docker usado para criar os ambientes para cada serviço: MySQL, NGINX e PHP.
+* [Digital Ocean](https://www.digitalocean.com/) - Hospedagem em Nuvem.
 
 ## 📌 Versão
 
